@@ -2,15 +2,15 @@
 
 # User Defined Stuff
 
-folder="/home/segfault/havoc"
-rom_name="Havoc-OS-"*.zip
+folder="/home/segfault/syberia"
+rom_name="syberia_apollo-v"*.zip
 gapps_command="WITH_GAPPS"
-with_gapps="yes"
-build_type="user"
+with_gapps="no"
+build_type="userdebug"
 device_codename="apollo"
-use_brunch="yes"
+use_brunch="no"
 OUT_PATH="$folder/out/target/product/${device_codename}"
-lunch="havoc"
+lunch="syberia"
 user="segfault"
 
 # Default you can change it 
@@ -41,7 +41,7 @@ BLINK="https://ci.goindi.org/job/$JOB_NAME/$BUILD_ID/console"
 
 read -r -d '' msg <<EOT
 <b>Build Started</b>
-${lunch} for ${device_codename} 
+${lunch} for  ${device_codename} 
 <b>Console log:-</b> <a href="${BLINK}">here</a>
 Good Luck ! Hope it Boots ! Happy Building ! 
 Visit goindi.org  for more 
@@ -65,6 +65,7 @@ export CCACHE_DIR=${ccache_location}
 ccache -M 75G
 
 source build/envsetup.sh
+export SKIP_ABI_CHECKS=true
 
 if [ "$with_gapps" = "yes" ];
 then
@@ -117,10 +118,10 @@ cp $ROM /home/dump/sites/goindi/downloads/${user}/${device_codename}
 filename="$(basename $ROM)"
 LINK="https://download.goindi.org/${user}/${device_codename}/${filename}"
 size="$(du -h ${ROM}|awk '{print $1}')"
-mdsum="$(md5sum ${ROM}|awk '{print $1}')"
+mdsum="$(md5sum ${zip}|awk '{print $1}')"
 read -r -d '' priv <<EOT
 Yay it's finished !
-${lunch} for ${device_codename} 
+${lunch} for  ${device_codename} 
 <b>Download:-</b> <a href="${LINK}">here</a>
 <b>Size:-</b> <pre> ${size}</pre>
 <b>Md5:-</b> <pre> ${mdsum}</pre>  

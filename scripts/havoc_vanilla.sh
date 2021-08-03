@@ -5,7 +5,7 @@
 folder="/home/segfault/havoc"
 rom_name="Havoc-OS-"*.zip
 gapps_command="WITH_GAPPS"
-with_gapps="yes"
+with_gapps="no"
 build_type="user"
 device_codename="apollo"
 use_brunch="yes"
@@ -41,7 +41,7 @@ BLINK="https://ci.goindi.org/job/$JOB_NAME/$BUILD_ID/console"
 
 read -r -d '' msg <<EOT
 <b>Build Started</b>
-${lunch} for ${device_codename} 
+${lunch} for  ${device_codename} 
 <b>Console log:-</b> <a href="${BLINK}">here</a>
 Good Luck ! Hope it Boots ! Happy Building ! 
 Visit goindi.org  for more 
@@ -117,10 +117,10 @@ cp $ROM /home/dump/sites/goindi/downloads/${user}/${device_codename}
 filename="$(basename $ROM)"
 LINK="https://download.goindi.org/${user}/${device_codename}/${filename}"
 size="$(du -h ${ROM}|awk '{print $1}')"
-mdsum="$(md5sum ${ROM}|awk '{print $1}')"
+mdsum="$(md5sum ${zip}|awk '{print $1}')"
 read -r -d '' priv <<EOT
 Yay it's finished !
-${lunch} for ${device_codename} 
+${lunch} for  ${device_codename} 
 <b>Download:-</b> <a href="${LINK}">here</a>
 <b>Size:-</b> <pre> ${size}</pre>
 <b>Md5:-</b> <pre> ${mdsum}</pre>  
